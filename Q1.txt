@@ -1,0 +1,20 @@
+First query
+
+
+SELECT U.username, SUM(O.total_amount) AS Total_Spending
+FROM orders O
+JOIN users U ON O.user_id = U.user_id
+WHERE O.order_date >= CURRENT_DATE - INTERVAL '30 days'
+GROUP BY U.username
+ORDER BY Total_Spending DESC LIMIT 5;
+
+
+
+Second Query
+
+
+SELECT P.product_name, SUM(Ot.quantity) AS Total_quantity_sold
+FROM order_items Ot
+JOIN products P ON oi.product_id = P.product_id
+GROUP BY P.product_name
+ORDER BY Total_quantity_sold;
